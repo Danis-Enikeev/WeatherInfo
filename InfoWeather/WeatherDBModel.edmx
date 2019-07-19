@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WeatherDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="WeatherDBModelStoreContainer">
+    <EntitySet Name="WeatherEntries" EntityType="WeatherDBModel.Store.WeatherEntries" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="WeatherEntries">
+    <Key>
+      <PropertyRef Name="EntryID" />
+    </Key>
+    <Property Name="EntryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Time" Type="time" Nullable="false" />
+    <Property Name="Temp" Type="float" Nullable="false" />
+    <Property Name="Humidity" Type="float" Nullable="false" />
+    <Property Name="Td" Type="float" Nullable="false" />
+    <Property Name="Pressure" Type="smallint" Nullable="false" />
+    <Property Name="WindDir" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="WindSpd" Type="smallint" Nullable="true" />
+    <Property Name="Cloudness" Type="smallint" Nullable="true" />
+    <Property Name="h" Type="smallint" Nullable="true" />
+    <Property Name="VV" Type="smallint" Nullable="true" />
+    <Property Name="WeatherPhen" Type="nvarchar" Nullable="true" MaxLength="200" />
+  </EntityType>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="WeatherDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="WeatherDBModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="WeatherEntries" EntityType="WeatherDBModel.WeatherEntry" />
+        </EntityContainer>
+        <EntityType Name="WeatherEntry">
+          <Key>
+            <PropertyRef Name="EntryID" />
+          </Key>
+          <Property Name="EntryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Time" Type="Time" Nullable="false" />
+          <Property Name="Temp" Type="Double" Nullable="false" />
+          <Property Name="Humidity" Type="Double" Nullable="false" />
+          <Property Name="Td" Type="Double" Nullable="false" />
+          <Property Name="Pressure" Type="Int16" Nullable="false" />
+          <Property Name="WindDir" Type="String" Nullable="true" MaxLength="10" />
+          <Property Name="WindSpd" Type="Int16" Nullable="true" />
+          <Property Name="Cloudness" Type="Int16" Nullable="true" />
+          <Property Name="h" Type="Int16" Nullable="true" />
+          <Property Name="VV" Type="Int16" Nullable="true" />
+          <Property Name="WeatherPhen" Type="String" Nullable="true" MaxLength="200" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WeatherDBModelStoreContainer" CdmEntityContainer="WeatherDBModelContainer">
+    <EntitySetMapping Name="WeatherEntries">
+      <EntityTypeMapping TypeName="IsTypeOf(WeatherDBModel.WeatherEntry)">
+        <MappingFragment StoreEntitySet="WeatherEntries">
+          <ScalarProperty Name="EntryID" ColumnName="EntryID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Temp" ColumnName="Temp" />
+          <ScalarProperty Name="Humidity" ColumnName="Humidity" />
+          <ScalarProperty Name="Td" ColumnName="Td" />
+          <ScalarProperty Name="Pressure" ColumnName="Pressure" />
+          <ScalarProperty Name="WindDir" ColumnName="WindDir" />
+          <ScalarProperty Name="WindSpd" ColumnName="WindSpd" />
+          <ScalarProperty Name="Cloudness" ColumnName="Cloudness" />
+          <ScalarProperty Name="h" ColumnName="h" />
+          <ScalarProperty Name="VV" ColumnName="VV" />
+          <ScalarProperty Name="WeatherPhen" ColumnName="WeatherPhen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
