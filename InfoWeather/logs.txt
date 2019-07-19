@@ -1,8 +1,0 @@
-2019-07-19 07:54:17.4469|ERROR|InfoWeather.Logic.DataBase|Failed to insert file C:\Users\danis\source\repos\InfoWeather\InfoWeather\UploadedFiles\a71f2818-5835-4235-bb13-eff4c1131c22 sheet 1 row 4 into the database
-2019-07-19 07:54:41.4509|ERROR|InfoWeather.Logic.DataBase|Failed to insert file C:\Users\danis\source\repos\InfoWeather\InfoWeather\UploadedFiles\11155e8b-44f0-48da-8f42-01523e9cf530 sheet 1 row 4 into the database
-2019-07-19 07:58:59.0370|ERROR|InfoWeather.Logic.DataBaseHandler|Failed to insert file C:\Users\danis\source\repos\InfoWeather\InfoWeather\UploadedFiles\29634a2d-b99f-4a7a-bd38-bccc5582095a sheet 1 row 4 into the database
-2019-07-19 08:02:24.4041|ERROR|InfoWeather.Logic.DataBaseHandler|Failed to insert file C:\Users\danis\source\repos\InfoWeather\InfoWeather\UploadedFiles\b365d22c-05fb-4455-9e91-dc3aecd98989 sheet 1 row 4 into the database
-2019-07-19 08:13:11.9299|ERROR|InfoWeather.Logic.DataBaseHandler|Failed to insert file C:\Users\danis\source\repos\InfoWeather\InfoWeather\UploadedFiles\9a9b6208-7109-4a2b-a5bf-1ae9681847ae sheet 1 row 4 into the database
-2019-07-19 08:13:24.3364|ERROR|InfoWeather.Logic.DataBaseHandler|Failed to insert file C:\Users\danis\source\repos\InfoWeather\InfoWeather\UploadedFiles\20e53e4d-b149-4dc7-bd8a-0c378f6d0a78 sheet 1 row 4 into the database
-2019-07-19 15:02:50.8810|ERROR|InfoWeather.Logic.DataBaseHandler|Failed to insert file C:\Users\danis\source\repos\InfoWeather\InfoWeather\UploadedFiles\c98163a8-993e-437b-88d1-c7d29d2b38d8 sheet 1 row 4 into the database
-2019-07-19 15:11:35.8165|ERROR|InfoWeather.Logic.DataBaseHandler|Failed to insert file C:\Users\danis\source\repos\InfoWeather\InfoWeather\UploadedFiles\2d13bd44-ec10-4a17-b6a4-620afe87e3c2 sheet 1 row 4 into the database
