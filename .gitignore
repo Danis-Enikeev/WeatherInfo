@@ -21,7 +21,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
-UploadedFiles/
+InfoWeather/UploadedFiles/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -262,7 +262,7 @@ __pycache__/
 *.pyc
 
 # Connection String config
-ConnectionStrings.config
+InfoWeather/ConnectionStrings.config
 
 #Logs
-logs.txt
+InfoWeather/logs.txt
