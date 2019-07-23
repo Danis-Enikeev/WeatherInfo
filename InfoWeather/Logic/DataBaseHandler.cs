@@ -1,4 +1,5 @@
-﻿using NPOI.HSSF.UserModel;
+﻿using InfoWeather.Models;
+using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;
@@ -14,6 +15,43 @@ namespace InfoWeather.Logic
     public static class DataBaseHandler
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
+        public static List<WeatherEntry> GetData(int year, int month)
+        {
+            using (WeatherDBModelContainer db = new WeatherDBModelContainer())
+            {
+                var query = from st in db.WeatherEntries
+                            where st.Date.Year == year && st.Date.Month == month
+                            orderby st.Date, st.Time
+                            select st;
+                List<WeatherEntry> data = query.ToList();
+                return data;
+            }
+            
+        }
+
+        public static int[] GetYears()
+        {
+            using (WeatherDBModelContainer db = new WeatherDBModelContainer())
+            {
+                var query = (from st in db.WeatherEntries
+                             orderby st.Date.Year
+                            select st.Date.Year).Distinct();
+                int[] years = query.ToArray(); 
+                return years;
+            }
+        }
+        public static int[] GetMonths(int year)
+        {
+            using (WeatherDBModelContainer db = new WeatherDBModelContainer())
+            {
+                var query = (from st in db.WeatherEntries where st.Date.Year == year
+                             orderby st.Date.Month
+                             select st.Date.Month).Distinct();
+                int[] months = query.ToArray();
+                return months;
+            }
+        }
 
         public static void FilesToDB(string filePath)
         {

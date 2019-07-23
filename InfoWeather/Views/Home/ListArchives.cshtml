@@ -1,0 +1,105 @@
+﻿@model PagedList.IPagedList<WeatherEntry>
+@{
+    ViewBag.Title = "Archives";
+}
+@using PagedList.Mvc;
+
+@using (Html.BeginForm("ListArchives", "Home", FormMethod.Get))
+{
+<p>
+    Year: @Html.DropDownList("Year", ViewBag.Years as SelectList, "Select Year")
+    Month: @Html.DropDownList("Month", ViewBag.Months as SelectList, "Select Month") 
+    <input type="submit" value="Search" />
+</p>
+}
+<table class="table">
+    <tr>
+        <th>
+            Date
+        </th>
+        <th>
+            Time
+        </th>
+        <th>
+            Temp
+        </th>
+        <th>
+            Humidity
+        </th>
+        <th>
+            Td
+        </th>
+        <th>
+            Pressure
+        </th>
+        <th>
+            WindDir
+        </th>
+        <th>
+            WindSpd
+        </th>
+        <th>
+            Cloudness
+        </th>
+        <th>
+            H
+        </th>
+        <th>
+            VV
+        </th>
+        <th>
+            WeatherPhen
+        </th>
+        <th></th>
+    </tr>
+
+    
+    @foreach (WeatherEntry item in Model)
+    {
+    <tr>
+        <td>
+            @item.Date.ToShortDateString()
+        </td>
+        <td>
+            @item.Time
+        </td>
+        <td>
+            @item.Temp
+        </td>
+        <td>
+            @item.Humidity
+        </td>
+        <td>
+            @item.Td
+        </td>
+        <td>
+            @item.Pressure
+        </td>
+        <td>
+            @item.WindDir
+        </td>
+        <td>
+            @item.WindSpd
+        </td>
+        <td>
+            @item.Cloudness
+        </td>
+        <td>
+            @item.h
+        </td>
+        <td>
+            @item.VV
+        </td>
+        <td>
+            @item.WeatherPhen
+        </td>
+    </tr>
+    }
+
+</table>
+<br />
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("ListArchives",
+    new { page, year = ViewBag.Year, month = ViewBag.Month}))
