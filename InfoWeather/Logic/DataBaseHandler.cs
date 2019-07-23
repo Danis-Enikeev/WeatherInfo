@@ -27,7 +27,7 @@ namespace InfoWeather.Logic
                 List<WeatherEntry> data = query.ToList();
                 return data;
             }
-            
+
         }
 
         public static int[] GetYears()
@@ -36,8 +36,8 @@ namespace InfoWeather.Logic
             {
                 var query = (from st in db.WeatherEntries
                              orderby st.Date.Year
-                            select st.Date.Year).Distinct();
-                int[] years = query.ToArray(); 
+                             select st.Date.Year).Distinct();
+                int[] years = query.ToArray();
                 return years;
             }
         }
@@ -45,7 +45,8 @@ namespace InfoWeather.Logic
         {
             using (WeatherDBModelContainer db = new WeatherDBModelContainer())
             {
-                var query = (from st in db.WeatherEntries where st.Date.Year == year
+                var query = (from st in db.WeatherEntries
+                             where st.Date.Year == year
                              orderby st.Date.Month
                              select st.Date.Month).Distinct();
                 int[] months = query.ToArray();
@@ -96,7 +97,6 @@ namespace InfoWeather.Logic
 
                         }
                     }
-
                 }
                 db.SaveChanges();
             }
