@@ -1,7 +1,7 @@
 # WeatherInfo
 Тестовое задание
 
-Для подключения к БД Microsoft SQL Server необходимо создать файл ConnectionStrings.config 
+Для подключения к БД Microsoft SQL Server необходимо в папке InfoWeather создать файл ConnectionStrings.config 
 ```
 <connectionStrings>
   <add name="WeatherDBModelContainer" connectionString="" />
