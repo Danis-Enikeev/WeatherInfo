@@ -48,6 +48,12 @@ CREATE TABLE [dbo].[WeatherEntries] (
 );
 GO
 
+-- -------------------------------------------------
+-- Creating a clustered index 
+-- -------------------------------------------------
+CREATE CLUSTERED INDEX cdx_WeatherEntries
+    ON [dbo].[WeatherEntries] ([Date], [Time]);
+GO
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -55,8 +61,9 @@ GO
 -- Creating primary key on [EntryID] in table 'WeatherEntries'
 ALTER TABLE [dbo].[WeatherEntries]
 ADD CONSTRAINT [PK_WeatherEntries]
-    PRIMARY KEY CLUSTERED ([EntryID] ASC);
+    PRIMARY KEY ([EntryID] ASC);
 GO
+
 
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints

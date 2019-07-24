@@ -35,6 +35,7 @@ namespace InfoWeather.Controllers
                             var ServerSavePath = Path.Combine(Server.MapPath("~/UploadedFiles/") + Guid.NewGuid());
                             file.SaveAs(ServerSavePath);
                             DataBaseHandler.FilesToDB(ServerSavePath);
+                            System.IO.File.Delete(ServerSavePath);
                             fileCounter++;
                         }
                     }
@@ -46,16 +47,10 @@ namespace InfoWeather.Controllers
         }
         public ActionResult ListArchives(int? Page, int? Year, int? Month)
         {
-            Dictionary<int, int[]> yearMonths = new Dictionary<int, int[]>();
             int[] years = DataBaseHandler.GetYears();
-            foreach (int year in years)
-            {
-                int[] months = DataBaseHandler.GetMonths(year);
-                yearMonths.Add(year, months);
-            }
-            ViewBag.Years = new SelectList(yearMonths.Keys);
+            ViewBag.Years = new SelectList(years);
             ViewBag.Months = new SelectList(Enumerable.Range(1, 12));
-            List<WeatherEntry> fullData = new List<WeatherEntry>();
+            StaticPagedList<WeatherEntry> fullData;
             int pageSize = 50;
             int pageNumber = (Page ?? 1);
             if (Year != null)
@@ -64,28 +59,18 @@ namespace InfoWeather.Controllers
                 if (Month != null)
                 {
                     ViewBag.Month = Month;
-                    fullData = DataBaseHandler.GetData((int)Year, (int)Month);
+                    fullData = DataBaseHandler.GetData(pageNumber, pageSize, (int)Year, (int)Month);
                 }
                 else
                 {
-                    foreach (int month in yearMonths[(int)Year])
-                    {
-                        fullData.AddRange(DataBaseHandler.GetData((int)Year, month));
-                    }
+                    fullData = DataBaseHandler.GetData(pageNumber, pageSize, (int)Year);
                 }
-
             }
             else
             {
-                foreach (int year in years)
-                {
-                    foreach (int month in yearMonths[year])
-                    {
-                        fullData.AddRange(DataBaseHandler.GetData(year, month));
-                    }
-                }
+                fullData = DataBaseHandler.GetData(pageNumber, pageSize);
             }
-            return View(fullData.ToPagedList(pageNumber, pageSize));
+            return View(fullData);
         }
     }
 }

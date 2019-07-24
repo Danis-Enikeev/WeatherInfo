@@ -2,6 +2,7 @@
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,16 +17,53 @@ namespace InfoWeather.Logic
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        public static List<WeatherEntry> GetData(int year, int month)
+        public static StaticPagedList<WeatherEntry> GetData(int PageNumber, int PageSize, int year, int month)
         {
             using (WeatherDBModelContainer db = new WeatherDBModelContainer())
             {
-                var query = from st in db.WeatherEntries
-                            where st.Date.Year == year && st.Date.Month == month
-                            orderby st.Date, st.Time
-                            select st;
+                var query = (from st in db.WeatherEntries
+                             where st.Date.Year == year && st.Date.Month == month
+                             orderby st.Date, st.Time
+                             select st).Skip((PageNumber - 1) * PageSize).Take(PageSize);
                 List<WeatherEntry> data = query.ToList();
-                return data;
+                var itemCount = (from st in db.WeatherEntries
+                                 where st.Date.Year == year && st.Date.Month == month
+                                 select st).Count();
+                var dataAsIPagedList = new StaticPagedList<WeatherEntry>(data, PageNumber, PageSize, itemCount);
+                return dataAsIPagedList;
+            }
+
+        }
+        public static StaticPagedList<WeatherEntry> GetData(int PageNumber, int PageSize, int year)
+        {
+            using (WeatherDBModelContainer db = new WeatherDBModelContainer())
+            {
+                var query = (from st in db.WeatherEntries
+                             where st.Date.Year == year
+                             orderby st.Date, st.Time
+                             select st).Skip((PageNumber - 1) * PageSize).Take(PageSize);
+                List<WeatherEntry> data = query.ToList();
+                var itemCount = (from st in db.WeatherEntries
+                                 where st.Date.Year == year
+                                 select st).Count();
+                var dataAsIPagedList = new StaticPagedList<WeatherEntry>(data, PageNumber, PageSize, itemCount);
+
+                return dataAsIPagedList;
+            }
+
+        }
+        public static StaticPagedList<WeatherEntry> GetData(int PageNumber, int PageSize)
+        {
+            using (WeatherDBModelContainer db = new WeatherDBModelContainer())
+            {
+                var query = (from st in db.WeatherEntries
+                             orderby st.Date, st.Time
+                             select st).Skip((PageNumber - 1) * PageSize).Take(PageSize);
+                List<WeatherEntry> data = query.ToList();
+                var itemCount = (from st in db.WeatherEntries
+                                 select st).Count();
+                var dataAsIPagedList = new StaticPagedList<WeatherEntry>(data, PageNumber, PageSize, itemCount);
+                return dataAsIPagedList;
             }
 
         }

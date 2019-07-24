@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<WeatherEntry>
+﻿@model PagedList.StaticPagedList<WeatherEntry>
 @{
     ViewBag.Title = "Archives";
 }
@@ -8,7 +8,7 @@
 {
 <p>
     Year: @Html.DropDownList("Year", ViewBag.Years as SelectList, "Select Year")
-    Month: @Html.DropDownList("Month", ViewBag.Months as SelectList, "Select Month") 
+    Month: @Html.DropDownList("Month", ViewBag.Months as SelectList, "Select Month")
     <input type="submit" value="Search" />
 </p>
 }
@@ -53,7 +53,7 @@
         <th></th>
     </tr>
 
-    
+
     @foreach (WeatherEntry item in Model)
     {
     <tr>
